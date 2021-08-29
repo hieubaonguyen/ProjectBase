@@ -1,4 +1,5 @@
 using Identity;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Solution.Core.Authentication;
 using Solution.Core.Authorization;
 using Solution.EntityFrameworkCore.Context;
+using Solution.Identity.Services;
 
 namespace Solution.Identity
 {
@@ -45,6 +47,8 @@ namespace Solution.Identity
                .AddAspNetIdentity<ApplicationUser>();
 
             builder.AddDeveloperSigningCredential();
+
+            services.AddScoped<IProfileService, ProfileService>();
 
             services.AddControllersWithViews();
         }
